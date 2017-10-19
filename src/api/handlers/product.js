@@ -1,27 +1,14 @@
 'use strict';
 import request from 'request';
 
-export default function({ OCRService }) {
+export default function ({ OCRService, blockchainService }) {
   const onError = (reply) => (err) => {
     reply(Boom.wrap(err));
   };
 
   return {
-    list_all_products: () => {
-      return new Promise((resolve, reject) => {
-        const options = {
-          method: 'GET',
-          url: process.env.BLOCKCHAIN_ADDRESS + process.env.PORT + process.env.PRODUCT_URL,
-          headers: { 'Content-Type': 'application/json' }
-        };
-        request(options, (error, response, body) => {
-          if (error) throw new Error(error);
-          const jsonData = JSON.parse(body);
-          const nMessage = jsonData[0];
-          const message = Object.assign($message.message, { content: nMessage });
-          resolve(message);
-        });
-      });
+    list_all_products(req, res) {
+      blockchainService.listProducts();
     },
     create_a_product(req, res) {
       const picture = req.payload.file.toString('base64');

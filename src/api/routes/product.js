@@ -3,14 +3,14 @@ import _ from 'lodash';
 
 export default (server, handlers, validations, defaultConfig) => {
   // PRODUCT ROUTES
-  // server.route({
-  //   method: 'GET',
-  //   path: '/product',
-  //   config: _.assign({}, defaultConfig, {
-  //     handler: handlers.product.findById,
-  //     validate: validations.product.findById
-  //   })
-  // });
+  server.route({
+    method: 'GET',
+    path: '/product',
+    config: _.assign({}, defaultConfig, {
+      handler: handlers.product.list_all_products,
+      // validate: validations.product.findById
+    })
+  });
 
   // server.route({
   //   method: 'GET',

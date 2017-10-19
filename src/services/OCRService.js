@@ -4,22 +4,29 @@ const FormData = require('form-data')
 import moment from 'moment';
 import request from 'request'
 import Global from '../api/global'
+import blockchainService from '../services/blockchainService'
 
 export default () => {
   return {
-    // send image to grimu
+    // send image to ocr
     sendPicture: (picture) => {
-      const object = { image: picture.source }
-
       return new Promise((resolve, reject) => {
         const options = {
-          method: 'POST',
           url: 'http://192.168.43.78:8000/label',
+          method: 'POST',
+          headers: {
+            'cache-control': 'no-cache',
+            'content-type': 'application/json'
+          },
           json: true,
-          body: object
+          body: { image: picture }
         };
+
         request(options, (error, response, body) => {
           console.log(error);
+          console.log(body)
+          //Get product model
+          blockchainService.sendProduct(product)
         });
       });
     }
