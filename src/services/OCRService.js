@@ -12,7 +12,7 @@ export default () => {
     sendPicture: (picture) => {
       return new Promise((resolve, reject) => {
         const options = {
-          url: 'http://192.168.43.78:8000/label',
+          url: 'https://hublot-parser.herokuapp.com/label',
           method: 'POST',
           headers: {
             'cache-control': 'no-cache',
