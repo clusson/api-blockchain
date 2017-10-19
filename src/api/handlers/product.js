@@ -1,7 +1,7 @@
 'use strict';
 import request from 'request';
 
-export default function ({ OCRService, blockchainService }) {
+export default function({ OCRService, blockchainService }) {
   const onError = (reply) => (err) => {
     reply(Boom.wrap(err));
   };
