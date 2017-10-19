@@ -23,10 +23,12 @@ export default () => {
         };
 
         request(options, (error, response, body) => {
-          console.log(error);
+          if (error != null) {
+            return reject(error);
+          }
           console.log(body)
+          return resolve(body)
           //Get product model
-          blockchainService.sendProduct(product)
         });
       });
     }

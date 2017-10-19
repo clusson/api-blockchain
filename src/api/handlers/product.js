@@ -12,8 +12,8 @@ export default function ({ OCRService, blockchainService }) {
     },
     create_a_product(req, res) {
       const picture = req.payload.file.toString('base64');
-      OCRService.sendPicture(picture).then((response) =>
-        blockchainService.sendScan(response)).then((idScan) => send(idScan));
+      OCRService.sendPicture(picture).then((resolve) =>
+        blockchainService.sendScan(resolve)).then((idScan) => send(idScan));
     },
     read_a_product(req, res) {
       return new Promise((resolve, reject) => {

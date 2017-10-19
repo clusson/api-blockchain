@@ -22,17 +22,19 @@ export default () => {
       });
     },
     sendScan(res) {
-
-    },
-    sendProduct(product) {
       return new Promise((resolve, reject) => {
         const options = {
           method: 'POST',
-          uri: process.env.BLOCKCHAIN_ADDRESS + process.env.PORT + process.env.PRODUCT_URL,
-          body: product
+          url: process.env.BLOCKCHAIN_ADDRESS + process.env.PORT + process.env.PRODUCT_URL,
+          body: res
         };
         request(options, (error, response, body) => {
-          console.log(error, body);
+          if (error != null) {
+            return reject(error);
+          }
+          console.log('sending to BC', body);
+          return resolve(body);
+          // Get product model
         });
       });
     }
