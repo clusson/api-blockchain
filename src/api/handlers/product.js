@@ -23,7 +23,8 @@ export default function({ OCRService }) {
         });
       });
     },
-    create_a_product(product) {
+    create_a_product(req, res) {
+      const picture = req.payload.file.toString('base64');
       OCRService.sendPicture(picture).then((response) =>
         blockchainService.sendScan(response)).then((idScan) => send(idScan));
     },

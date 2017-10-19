@@ -9,6 +9,6 @@ const defaultConfig = {
 export default (server, handlers, validations) => {
   return Promise.all([
     Product(server, handlers, validations, defaultConfig),
-    Scan(server, handlers, validations, defaultConfig)
+    // Scan(server, handlers, validations, defaultConfig)
   ]);
 };

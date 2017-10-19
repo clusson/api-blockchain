@@ -9,15 +9,19 @@ export default () => {
   return {
     // send image to grimu
     sendPicture: (picture) => {
-      const data = new FormData()
-      data.append('file', image)
+      const object = { image: picture.source }
 
-      fetch(Global.back + '/image', {
-        method: 'POST',
-        body: data
-      }).then(() => {
-        console.log('ok')
-      }).catch(err => console.error(err))
+      return new Promise((resolve, reject) => {
+        const options = {
+          method: 'POST',
+          url: 'http://192.168.43.78:8000/label',
+          json: true,
+          body: object
+        };
+        request(options, (error, response, body) => {
+          console.log(error);
+        });
+      });
     }
   };
 };
