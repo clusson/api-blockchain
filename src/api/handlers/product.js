@@ -31,6 +31,19 @@ export default function ({ OCRService, blockchainService }) {
     update_a_product(req, res) {
     },
     delete_a_product(req, res) {
+    },
+    send(idScan) {
+      return new Promise((resolve, reject) => {
+        const options = {
+          method: 'POST',
+          url: 'http://127.0.0.1:3000',
+          headers: { 'Content-Type': 'application/json' },
+          body: idScan
+        };
+        request(options, (error, response, body) => {
+          console.log(error, body);
+        });
+      });
     }
   };
 }
