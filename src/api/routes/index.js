@@ -1,5 +1,6 @@
 'use strict';
-import Plugins from './plugins';
+import Product from './product';
+import Scan from './scan';
 const defaultConfig = {
   description: 'no notes',
   notes: 'no description',
@@ -7,6 +8,7 @@ const defaultConfig = {
 };
 export default (server, handlers, validations) => {
   return Promise.all([
-    Plugins(server, handlers, validations, defaultConfig),
+    Product(server, handlers, validations, defaultConfig),
+    Scan(server, handlers, validations, defaultConfig)
   ]);
 };

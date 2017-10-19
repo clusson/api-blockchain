@@ -5,7 +5,6 @@ import OCRService from './OCRService';
 export default () => {
   return {
     blockchainService: blockchainService(),
-    OCRService: OCRService(),
-
+    OCRService: OCRService()
   };
 };

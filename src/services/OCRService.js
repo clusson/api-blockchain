@@ -1,24 +1,23 @@
 'use strict';
+const fetch = require('node-fetch')
+const FormData = require('form-data')
 import moment from 'moment';
+import request from 'request'
+import Global from '../api/global'
 
 export default () => {
   return {
     // send image to grimu
     sendPicture: (picture) => {
-      //send image to grimu with Post
-      return new Promise((resolve, reject) => {
-        const options = {
-          method: 'POST',
-          url: 'grimu route'
-        }
-        request(options, function (err, res, body) {
-          if (err) throw new Error(err)
-          let transactionId = body
-        })
-      }).then(response)
-      // get id from Nathan (scanID)
+      const data = new FormData()
+      data.append('file', image)
 
-      // get response from Nathan with product
+      fetch(Global.back + '/image', {
+        method: 'POST',
+        body: data
+      }).then(() => {
+        console.log('ok')
+      }).catch(err => console.error(err))
     }
   };
 };

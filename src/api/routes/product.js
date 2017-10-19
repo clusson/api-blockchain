@@ -1,34 +1,71 @@
 'use strict';
-import _ from 'lodash'
+import _ from 'lodash';
 
 export default (server, handlers, validations, defaultConfig) => {
+  // PRODUCT ROUTES
   server.route({
     method: 'GET',
-    path: '/plugins/{pluginId}',
+    path: '/product',
     config: _.assign({}, defaultConfig, {
-      handler: handlers.plugins.findById,
-      validate: validations.plugins.findById
+      handler: handlers.product.findById,
+      validate: validations.product.findById
     })
   });
+
+  server.route({
+    method: 'GET',
+    path: '/product/{productIdentifier}',
+    config: _.assign({}, defaultConfig, {
+      handler: handlers.product.findById,
+      validate: validations.product.findById
+    })
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/product/{productIdentifier}',
+    config: _.assign({}, defaultConfig, {
+      handler: handlers.product.findById,
+      validate: validations.product.findById
+    })
+  });
+
+  server.route({
+    method: 'PUT',
+    path: '/product/{productIdentifier}',
+    config: _.assign({}, defaultConfig, {
+      handler: handlers.product.findById,
+      validate: validations.product.findById
+    })
+  });
+
+  server.route({
+    method: 'DELETE',
+    path: '/product/{productIdentifier}',
+    config: _.assign({}, defaultConfig, {
+      handler: handlers.product.findById,
+      validate: validations.product.findById
+    })
+  });
+
+  // SCAN ROUTES
+  server.route({
+    method: 'GET',
+    path: '/scan',
+    config: _.assign({}, defaultConfig, {
+      handler: handlers.product.findById,
+      validate: validations.product.findById
+    })
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/scan/{scanId}',
+    config: _.assign({}, defaultConfig, {
+      handler: handlers.scan.findById,
+      validate: validations.scan.findById
+    })
+  });
+
   return Promise.resolve();
 };
-
-
-
-// product Routes
-app.route('/product')
-  .get(product.list_all_products)
-  .post(product.create_a_product)
-
-// scan Routes
-app.route('/scan')
-  .get(scan.list_all_scans)
-  .post(scan.create_a_scan)
-
-app.route('/product/:productIdentifier')
-  .get(product.read_a_product)
-  .put(product.update_a_product)
-  .delete(product.delete_a_product)
-
-app.route('/scan/:scanId')
-  .get(scan.read_a_scan)
